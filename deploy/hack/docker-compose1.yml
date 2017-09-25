@@ -1,0 +1,66 @@
+version: '3'
+services:
+  spark-master:
+    image: library/dspark:0.4-1
+    ports:
+      - "8082:8080"
+    networks:
+      - spark-network
+    deploy:
+      resources:
+        limits:
+          memory: "1g"
+        reservations:
+          memory: "1g"
+  spark-worker:
+    image: library/dspark:0.4-1
+    ports:
+      - "8083:8081"
+    networks:
+      - spark-network
+    environment:
+      MASTER: "spark-master"
+      SPARK_WORKER_MEMORY: "2g"
+      SPARK_WORKER_CORES: 1
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          memory: "2g"
+        reservations:
+          memory: "2g"
+  spark-worker2:
+    image: library/dspark:0.4-1
+    ports:
+      - "8084:8081"
+    networks:
+      - spark-network
+    environment:
+      MASTER: "spark-master"
+      SPARK_WORKER_MEMORY: "2g"
+      SPARK_WORKER_CORES: 1
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          memory: "2g"
+        reservations:
+          memory: "2g"
+  zeppelin:
+    image: library/dzeppelin:0.4-1
+    ports:
+      - "8081:8080"
+      - "4040:4040"
+      - "8022:22"
+    networks:
+      - spark-network
+    environment:
+      MASTER: "spark-master"
+    deploy:
+      resources:
+        limits:
+          memory: "2g"
+        reservations:
+          memory: "2g"
+networks:
+   spark-network:

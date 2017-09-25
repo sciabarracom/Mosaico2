@@ -1,0 +1,81 @@
+version: '3'
+services:
+  spark-master:
+    hostname: spark-master
+    domainname: loc
+    image: library/dspark:0.4-1
+    ports:
+      - "8082:8080"
+    networks:
+      - spark-network
+    environment:
+      SPARK_MASTER_MEMORY: "4g"
+      SPARK_MASTER_CORES: 2
+    deploy:
+      resources:
+        limits:
+          memory: "1g"
+        reservations:
+          memory: "1g"
+  spark-worker:
+    hostname: spark-worker
+    domainname: loc
+    image: library/dspark:0.4-1
+    links:
+      - "spark-master:spark-master.loc"
+    ports:
+      - "8083:8081"
+    networks:
+      - spark-network
+    environment:
+      MASTER: "spark-master.loc"
+      SPARK_WORKER_MEMORY: "4g"
+      SPARK_WORKER_CORES: 2
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          memory: "2g"
+        reservations:
+          memory: "2g"
+  spark-worker2:
+    hostname: spark-worker2
+    domainname: loc
+    image: library/dspark:0.4-1
+    links:
+      - "spark-master:spark-master.loc"
+    ports:
+      - "8084:8081"
+    networks:
+      - spark-network
+    environment:
+      MASTER: "spark-master.loc"
+      SPARK_WORKER_MEMORY: "4g"
+      SPARK_WORKER_CORES: 2
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          memory: "2g"
+        reservations:
+          memory: "2g"
+  zeppelin:
+    image: library/dzeppelin:0.4-1
+    ports:
+      - "8081:8080"
+      - "4040:4040"
+      - "8022:22"
+    networks:
+      - spark-network
+    links:
+      - "spark-master:spark-master.loc"
+    environment:
+      MASTER: "spark-master.loc"
+    deploy:
+      resources:
+        limits:
+          memory: "2g"
+        reservations:
+          memory: "2g"
+networks:
+   spark-network:
