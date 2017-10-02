@@ -10,7 +10,7 @@ dockerfile in docker := {
   new Dockerfile {
     from((docker in jdk8).value.toString)
     add(base/"hadoop.tgz", "/usr")
-    runRaw("ln -sf /usr/hadoop-* /usr/hadoop ; chmod +x /usr/hadoop/bin/* /usr/hadoop/sbin/*")
+    runRaw("ln -sf /usr/hadoop-* /usr/hadoop")
     env("HADOOP_PREFIX", "/usr/hadoop")
     runRaw(s"""
            |install_packages openssh-server openssh-client ;
@@ -20,23 +20,8 @@ dockerfile in docker := {
            |echo set /files/etc/ssh/ssh_config/Host/StrictHostKeyChecking no | augtool -s ;
            |echo set /files/etc/ssh/sshd_config/PermitRootLogin yes | augtool -s ;
            |""".stripMargin.replace('\n', ' '))
+    add(base/"run.sh", "/services/hadoop/run")
+    runRaw("mkdir /data ; chmod +x /services/hadoop/run /usr/hadoop/bin/* /usr/hadoop/sbin/*")
+    expose(50010,50020,50070,50075,50090)
   }
 }
-
-//val hadoop_single = project.enablePlugins(MosaicoDockerPlugin)
-
-//val hadoop_namenode = project
-
-//val hadoop_datanode = project
-
-//val hadoop_secnode = project
-
-//val hadoop_resman = project
-
-//val hadoop_proxy = project
-
-//val hadoop_history = project
-
-//val allHadoopImages = project
-//   .aggregate(hadoop_namenode,hadoop_datanode,hadoop_secnode,
-//              hadoop_resman, hadoop_proxy, hadoop_history)

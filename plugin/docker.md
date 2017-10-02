@@ -28,6 +28,10 @@ useful to add passwords, cookies, etc.
 Note that if any argument starts with "@",
 its actual value is looked up in the configured [`prp`](config.md) setting.
 
+Also any argument starting with "%",
+its actual value is looked up in the configured [`prp`](config.md) setting,
+it is considered  as a path or url, and it is replaced with the name of the file in the path or url.
+
 ## input `unzip` {source} {outdir} [-{regex} | +{regex}]
 
 Unzip the {source} file in the {outdir}, excluding (-) or including  (+) paths identified by the {regex}

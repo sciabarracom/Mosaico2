@@ -1,10 +1,27 @@
 #!/bin/bash
 CFG=/usr/zeppelin/conf/zeppelin-env.sh
+
 if test -n "$MASTER"
-then
-    #SPARK_MASTER=spark://"$(getent hosts $MASTER | awk '{print $1}')":7077
-    SPARK_MASTER=spark://"$MASTER":7077
+then SPARK_MASTER=spark://"$MASTER":7077
 fi
+#SPARK_MASTER=spark://"$(getent hosts $MASTER | awk '{print $1}')":7077
+
+if test -n "$HADOOP"
+then cat <<EOF >/usr/hadoop/etc/hadoop/core-site.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+ <property>
+   <name>fs.defaultFS</name>
+   <value>hdfs://$HADOOP/</value>
+ </property>
+ <property>
+   <name>io.file.buffer.size</name>
+   <value>131072</value>
+ </property>
+</configuration>
+EOF
+fi
+
 echo "*** zeppelin-env ***"
 env \
   MASTER="${SPARK_MASTER:-local[*]}" \

@@ -1,0 +1,19 @@
+django:
+  hostname: django
+  domainname: loc
+  image: django:0.4-1
+  expose: [ "8000" ]
+  ports:
+    - "8001:8000"
+
+nginx:
+  hostname: nginx
+  domainname: loc
+  image: nginx:0.4-1
+  links:
+    - "django:django.loc"
+  environment:
+    DJANGO_HOST: django.loc
+    NGINX_HOST: localhost
+  ports:
+    - "8080:80"

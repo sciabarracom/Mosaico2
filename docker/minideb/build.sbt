@@ -19,6 +19,12 @@ lazy val zeppelin = project
 lazy val sbt13 = project
   .enablePlugins(MosaicoDockerPlugin)
 
+lazy val kafka = project
+.enablePlugins(MosaicoDockerPlugin)
+
+lazy val zookeeper = project
+.enablePlugins(MosaicoDockerPlugin)
+
 
 lazy val minideb = (project in file(".")).
-  aggregate(dbase, jdk8, hadoop, spark, cassandra, zeppelin, sbt13)
+  aggregate(dbase, jdk8, hadoop, spark, cassandra, zeppelin, sbt13, kafka, zookeeper)

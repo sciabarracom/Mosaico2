@@ -3,7 +3,7 @@ prpLookup += baseDirectory.value.getParentFile -> "minideb"
 
 imageNames in docker := Seq(ImageName(prp.value("spark")))
 
-val jdk8 = (project in file("..")/"jdk8")
+val hadoop = (project in file("..")/"hadoop")
   .enablePlugins(MosaicoDockerPlugin)
 
 dockerfile in docker := {
@@ -13,7 +13,7 @@ dockerfile in docker := {
     ).value
     val base = baseDirectory.value
     new Dockerfile {
-      from((docker in jdk8).value.toString)
+      from((docker in hadoop).value.toString)
       add(base/"spark.tgz", "/usr")
       runRaw("ln -sf /usr/spark-* /usr/spark")
       add(base/"slf4j-api.jar", "/usr/spark/jars")

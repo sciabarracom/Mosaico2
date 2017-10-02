@@ -8,6 +8,24 @@ import sbt.{ForkOptions, Fork}
   * Created by msciab on 18/09/16.
   */
 trait MiscUtils {
+
+  /*
+    extractFileName("")
+    extractFileName("test.tgz")
+    extractFileName("relative/test.tgz")
+    extractFileName("http://www.google.com")
+    extractFileName("http://www.google.com/test.tgz")
+    extractFileName("http://www.google.com/path/test.tgz")
+  */
+  def extractFileName(s: String) = {
+    val filename = try {
+      new java.io.File(new java.net.URL(s).getFile)
+    } catch {
+      case e: Throwable => new java.io.File(s)
+    }
+    if(filename.getName=="") "out.tmp" else filename.getName
+  }
+
   /**
     * Receive an array (e.g "a" "@b" "c")
     * Repace each value starting with "@" with the corresponging key in the map.
@@ -20,6 +38,8 @@ trait MiscUtils {
     args.map(x =>
       if (x.startsWith("@"))
         map(x.substring(1))
+      else if(x.startsWith("%"))
+        extractFileName(map(x.substring(1)))
       else x
     )
   }

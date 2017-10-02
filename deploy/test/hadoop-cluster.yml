@@ -1,0 +1,30 @@
+hadoop:
+  image: hadoop:0.4-1
+  hostname: hadoop
+  domainname: loc
+  expose: ["8020"]
+  ports:
+    - "8020:8020"
+  environment:
+    MASTER: hadoop.loc
+    IS_NAME_NODE: 1
+
+hadoop-datanode:
+  image: hadoop:0.4-1
+  hostname: hadoop-datanode
+  domainname: loc
+  links:
+    - "hadoop:hadoop.loc"
+  environment:
+    MASTER: hadoop.loc
+    IS_DATA_NODE: 1
+
+hadoop-secondary:
+  image: hadoop:0.4-1
+  hostname: hadoop-secondary
+  domainname: loc
+  links:
+    - "hadoop:hadoop.loc"
+  environment:
+    MASTER: hadoop.loc
+    IS_SECONDARY_NAME_NODE: 1
