@@ -5,6 +5,7 @@ import java.io.File
 import sbt._
 import Keys._
 import sbt.plugins.JvmPlugin
+import mosaico.config.MosaicoConfigPlugin
 
 object MosaicoAmmonitePlugin
   extends AutoPlugin {
@@ -16,16 +17,21 @@ object MosaicoAmmonitePlugin
   }
 
   import autoImport._
+  import MosaicoConfigPlugin.autoImport._
 
   val ammTask = amm := {
     val args = Def.spaceDelimited("<arg>").parsed
     val home = baseDirectory.value
     val classpath = (fullClasspath in Compile).value.files
 
+    val props = for( (k,v) <- prp.value) yield {
+      s"-D$k=$v"
+    }
+
     val predef: Seq[String] = if (ammPredef.value.isEmpty) Seq()
     else Seq("-p", ammPredef.value.getOrElse("--no-default-predef"))
 
-    val jvmOpts = Seq("-cp"
+    val jvmOpts = props.toSeq ++ Seq("-cp"
       , classpath.map(_.getAbsolutePath).mkString(File.pathSeparator)
       , "ammonite.Main")
 
@@ -52,5 +58,5 @@ object MosaicoAmmonitePlugin
   )
 
   override def requires =
-    JvmPlugin
+    JvmPlugin && MosaicoConfigPlugin
 }

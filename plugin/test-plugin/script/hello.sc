@@ -1,3 +1,4 @@
 import ammonite.main.Router.main
 
-println("Hello, world")
+val msg = sys.props("hello")
+println(s"Hello, ${msg}.")

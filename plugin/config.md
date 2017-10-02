@@ -2,12 +2,12 @@
 
 Mosaico supports property configuration files that can be used in the builds.
 
-The task `prp` returs a map of the properties read from property files, 
+The task `prp` returs a map of the properties read from property files,
 so you can get a named property (a string) in your build with:
 
 `prp.value("property.name")`
 
-Default configuration files are placed the top level folder of your file, 
+Default configuration files are placed the top level folder of your file,
 and are in order:
 
 - `mosaico.dist.properties`
@@ -18,8 +18,6 @@ The first one is meant to be included in the distribution providing defaults.
 The second is the actual man configuration file.
 The third one is meant to be used locally and not to be shared with others.
 
-You can see the whole configuration and configuration files with `prpDump`
-
 # Profile support
 
 You can actually use an additional property file named:
@@ -28,7 +26,7 @@ You can actually use an additional property file named:
 
 where `${profile}` is the value of the System property `profile`,
 only when it is available. The profiled property file is loaded last, after other files.
- 
+
 You can set the profile from the `sbt` startup command (with for example `sbt -Dprofile=devel`),
 or you can dynamicall change the profile with the `profile` command name.
 
@@ -36,15 +34,15 @@ Profile switch will set the `profile` sytem property and reload the property fil
 
 # Adding property files
 
-Where and which property files 
+Where and which property files
 You can change or add your own property files with the setting:
 
 ```
 prpLookup ++= Seq(file("prp")->"myprp")
 ```
 
-Default prefix is `mosaico`, if you add your own the system will process 
-also your prefixes, including a profile if there is one. 
+Default prefix is `mosaico`, if you add your own the system will process
+also your prefixes, including a profile if there is one.
 
 So if have a profile `devel`,  it will process also
 
