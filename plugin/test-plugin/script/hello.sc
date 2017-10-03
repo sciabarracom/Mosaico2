@@ -1,4 +1,5 @@
 import ammonite.main.Router.main
 
-val msg = sys.props("hello")
-println(s"Hello, ${msg}.")
+println(sys.props("test.description"))
+print(s"[${sys.props("test.location")}] ")
+println(sys.props("test.greet"))

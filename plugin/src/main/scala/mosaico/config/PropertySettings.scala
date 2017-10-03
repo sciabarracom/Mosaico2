@@ -52,7 +52,6 @@ trait PropertySettings extends FileUtils with MiscUtils {
     }
   }
 
-
   def profileCmd = Command.args("profile", "<args>") { (state, args) =>
     if (args.size != 1) {
       println("usage: profile <profile>|- (- = noprofile)")

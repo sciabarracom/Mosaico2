@@ -22,6 +22,8 @@ Checking package
   $ ls common/target/*.apk
   common/target/daemontools.apk
   $ ./sbt "amm hello.sc" 2>/dev/null | grep Hello
-  Hello, World.
+  Hello Properties and Hocon
+  [earth] Hello, Earth.
   $ ./sbt -Dprofile=mars "amm hello.sc" 2>/dev/null | grep Hello
-  Hello, Mars.
+  Hello Properties and Hocon
+  [mars] Hello, Mars.

@@ -21,6 +21,7 @@ libraryDependencies ++= Seq(
   , "com.typesafe.akka"          %  "akka-stream-experimental_2.10"    % "2.0.4"
   , "com.typesafe.akka"          %  "akka-http-core-experimental_2.10" % "2.0.4"
   , "com.typesafe.akka"          %  "akka-http-experimental_2.10"      % "2.0.4"
+  , "com.typesafe"               %  "config"                           % "1.3.1"
   )
 
 addSbtPlugin("se.marcuslonnberg" % "sbt-docker" % "1.4.1")
