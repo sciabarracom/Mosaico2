@@ -77,7 +77,6 @@ trait DockerSettings {
       .mkString("docker rmi -f ", " ", "")
       .!
 
-
   val dockerSettings = Seq(_dk, _dki, _dkrm)
 
 }

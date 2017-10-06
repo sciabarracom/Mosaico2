@@ -10,24 +10,16 @@ import sbt.plugins.JvmPlugin
 object MosaicoConfigPlugin
   extends AutoPlugin
     with PropertySettings
-    with HoconSettings
-    with VersionSettings {
+    with HoconSettings {
 
   override def requires = JvmPlugin
 
   object autoImport extends
     PropertyKeys
-    with VersionKeys
     with HoconKeys
 
-  def shCommand = Command.args("sh", "<shell command>") { (state, args) =>
-    import scala.sys.process._
-    args.mkString(" ").!
-    state
-  }
 
-  override val projectSettings = Seq(commands += shCommand) ++
+  override val projectSettings =
     propertySettings ++
-    hoconSettings ++
-    versionSettings
+    hoconSettings
 }
