@@ -1,0 +1,17 @@
+---
+- name: read public key
+  shell: cat /home/centos/.ssh/id_rsa.pub
+  register: local_ssh_public_key
+
+- name: set public key fact
+  set_fact:
+    ssh_public_key: "{{local_ssh_public_key.stdout}}"
+
+- name: authorize other hosts with ssh
+  authorized_key:
+    user: centos
+    state: present
+    key: "{{ hostvars[item].ssh_public_key }}"
+  with_inventory_hostnames:
+    - all
+  when: inventory_hostname == master_hostname

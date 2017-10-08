@@ -1,0 +1,12 @@
+---
+- name: set facts
+  set_fact:
+    ssh_public_key: "{{local_ssh_public_key.stdout}}"
+    docker_swarm_join: "{{local_docker_swarm_join.stdout}} && touch /home/centos/docker-swarm.joined"
+  when: inventory_hostname == master_hostname
+
+- debug: msg="{{hostvars[master_hostname].ssh_public_key}}"
+  when:  inventory_hostname != master_hostname
+
+- debug: msg="{{hostvars[master_hostname].docker_swarm_join}}"
+  when:  inventory_hostname != master_hostname

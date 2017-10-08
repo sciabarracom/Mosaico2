@@ -1,0 +1,14 @@
+---
+- hosts: tag_Application_Mosaico
+  become: yes
+  gather_facts: false
+  roles:
+    #- provision
+
+- hosts: tag_Application_Mosaico
+  become: no
+  gather_facts: false
+  vars:
+    master_hostname: "{{ groups['tag_Name_master'][0] }}"
+  roles:
+    - local-registry

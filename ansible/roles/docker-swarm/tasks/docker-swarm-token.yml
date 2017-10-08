@@ -1,0 +1,17 @@
+---
+- name: docker-swarm-join
+  shell: >
+      docker swarm init --advertise-addr $(hostname -i) | grep "docker swarm join --token" >/home/centos/docker-swarm-join.sh
+  args:
+    creates: /home/centos/docker-swarm-join.sh
+  when: inventory_hostname == master_hostname
+
+- name: read docker join
+  shell: cat /home/centos/docker-swarm-join.sh
+  register: local_docker_swarm_join
+  when: inventory_hostname == master_hostname
+
+- name: distribute docker join
+  set_fact:
+    docker_swarm_join: "{{local_docker_swarm_join.stdout}} && touch /home/centos/docker-swarm.joined"
+  when: inventory_hostname == master_hostname

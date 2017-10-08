@@ -1,0 +1,15 @@
+---
+- name: install docker
+  yum:
+    name: docker-ce
+    state: present
+
+- name: adding user centos to docker group
+  user:
+    name: centos
+    groups: docker
+    append: yes
+
+- name: enabling docker
+  become: yes
+  service: name=docker.service state=started enabled=yes

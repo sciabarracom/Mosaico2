@@ -1,0 +1,20 @@
+---
+- name: ssh-keygen
+  shell: >
+   ssh-keygen -f /home/centos/.ssh/id_rsa -N ''
+  args:
+    creates: /home/centos/.ssh/id_rsa.pub
+
+- file:
+    path: /home/centos/.ssh
+    state: directory
+    owner: centos
+    mode: 0700
+
+- file:
+    path: "/home/centos/.ssh/{{item}}"
+    owner: centos
+    mode: 0600
+  with_items:
+    - "id_rsa"
+    - "id_rsa.pub"
