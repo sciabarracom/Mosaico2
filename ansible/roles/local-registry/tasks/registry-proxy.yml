@@ -1,0 +1,12 @@
+---
+- name: registry-proxy service
+  become: yes
+  template: src=registry-proxy.service dest=/etc/systemd/system/registry.service mode=644
+  notify:
+    - reload systemd
+  when: inventory_hostname != master_hostname
+
+- name: enabling registry-proxy
+  become: yes
+  service: name=registry state=started enabled=yes
+  when: inventory_hostname != master_hostname

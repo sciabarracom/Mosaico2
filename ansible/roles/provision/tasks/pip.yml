@@ -1,0 +1,9 @@
+- get_url:
+    url:   "https://bootstrap.pypa.io/get-pip.py"
+    dest:  "/etc/get-pyp.py"
+
+- command: python /etc/get-pyp.py
+  args:
+    creates: /bin/pip
+
+- pip: name=docker-py

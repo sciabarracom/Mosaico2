@@ -6,8 +6,11 @@
 
 - name: install yum utils
   yum:
-    name: 'yum-utils'
+    name: "{{item}}"
     state: present
+  with_items:
+    - yum-utils
+    - telnet
 
 - name: add docker repo
   shell: |

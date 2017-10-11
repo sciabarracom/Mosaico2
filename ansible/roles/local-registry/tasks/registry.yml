@@ -1,0 +1,23 @@
+---
+- pip: name=docker-py
+- name: registry present
+  docker_container:
+    name: registry
+    state: started
+    image: registry:2
+    restart: yes
+    ports:
+      - "5000:5000"
+  when: inventory_hostname == master_hostname
+
+- name: registry service
+  become: yes
+  template: src=registry.service dest=/etc/systemd/system/registry.service mode=644
+  notify:
+    - reload systemd
+  when: inventory_hostname == master_hostname
+
+- name: enabling registry
+  become: yes
+  service: name=registry state=started enabled=yes
+  when: inventory_hostname == master_hostname

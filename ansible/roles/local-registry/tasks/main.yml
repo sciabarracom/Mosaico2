@@ -1,2 +1,4 @@
 ---
 - include_tasks: authssh.yml
+- include_tasks: registry.yml
+- include_tasks: registry-proxy.yml
