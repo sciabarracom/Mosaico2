@@ -1,20 +1,22 @@
 zook:
   hostname: zookeeper
   domainname: loc
-  image: kafka:0.4-1
+  image: kafka:0.4-2
   expose: ["2181"]
   environment:
-    MASTER: zookeeper.loc
     IS_ZOOKEEPER: 1
+    ZOOKEEPER: zookeeper.loc
   ports: ["2181:2181"]
 
 kafka1:
   hostname: kafka1
   domainname: loc
-  image: kafka:0.4-1
+  image: kafka:0.4-2
   links:
     - "zook:zookeeper.loc"
   environment:
-    MASTER: zookeeper.loc
+    ZOOKEEPER: zookeeper.loc
     IS_KAFKA: 1
+    LISTENERS: PLAINTEXT://kafka1.loc:9092
+    ADVERTISED_LISTENERS: PLAINTEXT://kafka.sciabarra.com:9092
   ports: ["9092:9092"]

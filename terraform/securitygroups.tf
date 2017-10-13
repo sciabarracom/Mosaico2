@@ -9,10 +9,24 @@ resource "aws_security_group" "FrontEnd" {
   vpc_id = "${aws_vpc.mosaico_vpc.id}"
 
   ingress {
-        from_port = 80
-        to_port = 80
-        protocol = "TCP"
-        cidr_blocks = ["0.0.0.0/24"]
+    from_port = 1024
+    to_port = 65535
+    protocol = "UDP"
+    cidr_blocks = ["10.0.0.0/24"]
+ }
+
+ ingress {
+     from_port = 1024
+     to_port = 65535
+     protocol = "TCP"
+     cidr_blocks = ["10.0.0.0/24"]
+ }
+
+  ingress {
+    from_port = 80
+    to_port = 80
+    protocol = "TCP"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
@@ -23,41 +37,11 @@ resource "aws_security_group" "FrontEnd" {
   }
 
   ingress {
-        from_port = 1024
-        to_port = 4999
-        protocol = "TCP"
-        cidr_blocks = ["0.0.0.0/24"]
-  }
-
-  ingress {
-        from_port = 5000
-        to_port = 5000
-        protocol = "TCP"
-        cidr_blocks = ["10.0.0.0/24"]
-  }
-
-  ingress {
-        from_port = 5001
-        to_port = 65535
-        protocol = "TCP"
-        cidr_blocks = ["0.0.0.0/24"]
-  }
-
-  ingress {
         from_port = 55
         to_port = 55
         protocol = "UDP"
         cidr_blocks = ["0.0.0.0/0"]
   }
-
-
-  ingress {
-        from_port = 1024
-        to_port = 65535
-        protocol = "UDP"
-        cidr_blocks = ["0.0.0.0/0"]
-  }
-
 
   egress {
     from_port = 0

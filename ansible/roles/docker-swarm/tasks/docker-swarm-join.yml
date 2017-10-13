@@ -1,3 +1,8 @@
 ---
-- debug: msg={{hostvars[master_hostname].docker_swarm_join}}
+- debug: msg="{{hostvars[master_hostname].docker_swarm_join}}"
+  when: inventory_hostname != master_hostname
+
+- shell: "{{hostvars[master_hostname].docker_swarm_join}}"
+  args:
+    creates: /home/centos/docker-swarm.joined
   when: inventory_hostname != master_hostname

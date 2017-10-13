@@ -14,6 +14,7 @@ dockerfile in docker := {
     runRaw("ln -sf /usr/kafka_* /usr/kafka ; chmod +x /usr/kafka/bin/*")
     add(base/"run.sh", "/services/kafka/run")
     runRaw("chmod +x /services/kafka/run")
+    workDir("/usr/kafka")
     expose(2181,2888,3888,9092)
   }
 }
