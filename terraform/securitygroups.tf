@@ -54,7 +54,7 @@ resource "aws_security_group" "FrontEnd" {
     from_port = 8080
     to_port = 9080
     protocol = "TCP"
-    cidr_blocks = ["0.0.0.0/24"]
+    cidr_blocks = ["0.0.0.0/0"]
  }
 
 }
