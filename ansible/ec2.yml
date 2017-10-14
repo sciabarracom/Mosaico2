@@ -3,14 +3,14 @@
   become: yes
   gather_facts: false
   roles:
-    #- provision
+    - provision
 
 - hosts: tag_Application_Mosaico
-  become: no
+  become: yes
   gather_facts: false
   vars:
     master_hostname: "{{ groups['tag_Name_master'][0] }}"
     master_private_ip: "{{hostvars[master_hostname].ec2_private_ip_address}}"
   roles:
-    #- local-registry
+    - local-registry
     - docker-swarm

@@ -1,13 +1,18 @@
 ---
+- name: no firewalld
+  yum:
+    name: "firewalld"
+    state: absent
+
 - name: install docker
   yum:
-    name: docker-ce
+    name: docker
     state: present
 
 - name: adding user centos to docker group
   user:
     name: centos
-    groups: docker
+    groups: dockerroot
     append: yes
 
 - name: enabling docker
