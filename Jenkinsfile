@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-	      sh 'cd docker ; ../sbt -Dprofile=local dockerBuildAndPush'
+	             sh 'cd plugin ; ../sbt -no-colors publishLocal ; cd ../docker ; ../sbt -Dprofile=local -no-colors dockerBuildAndPush'
             }
         }
    }
