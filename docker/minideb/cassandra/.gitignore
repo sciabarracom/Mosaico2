@@ -1,1 +1,2 @@
-cassandra.tgz
+*.tar.gz
+*.tgz

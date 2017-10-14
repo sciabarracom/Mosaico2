@@ -1,1 +1,3 @@
-serf.zip
+*.zip
+*.tar.gz
+*.tgz

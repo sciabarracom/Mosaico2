@@ -2,9 +2,10 @@ prpLookup += baseDirectory.value.getParentFile -> "minideb"
 
 imageNames in docker := Seq(ImageName(prp.value("zeppelin")))
 
-val zeppelin = (project in file("..") / "spark").enablePlugins(MosaicoDockerPlugin)
+val spark = (project in file("..") / "spark").enablePlugins(MosaicoDockerPlugin)
 
 dockerfile in docker := {
+  val zeppelin = file(url(prp.value("zeppelin.url")).getFile).getName
   download.toTask(s" @zeppelin.url %zeppelin.url").value
   val base = baseDirectory.value
   new Dockerfile {
