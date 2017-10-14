@@ -1,0 +1,14 @@
+---
+- pip: name=docker-py
+- name: jenkins present
+  docker_container:
+    name: jenkins
+    state: started
+    image: jenkins/jenkins:lts
+    restart: yes
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      "/var/run/docker.sock:/var/run/docker.sock"
+  when: inventory_hostname == master_hostname

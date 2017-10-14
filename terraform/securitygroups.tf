@@ -16,10 +16,10 @@ resource "aws_security_group" "FrontEnd" {
  }
 
  ingress {
-     from_port = 1024
-     to_port = 65535
-     protocol = "TCP"
-     cidr_blocks = ["10.0.0.0/24"]
+    from_port = 1024
+    to_port = 65535
+    protocol = "TCP"
+    cidr_blocks = ["10.0.0.0/24"]
  }
 
   ingress {
@@ -37,10 +37,10 @@ resource "aws_security_group" "FrontEnd" {
   }
 
   ingress {
-        from_port = 55
-        to_port = 55
-        protocol = "UDP"
-        cidr_blocks = ["0.0.0.0/0"]
+    from_port = 55
+    to_port = 55
+    protocol = "UDP"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
@@ -49,4 +49,12 @@ resource "aws_security_group" "FrontEnd" {
     protocol = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  ingress {
+    from_port = 8080
+    to_port = 9080
+    protocol = "TCP"
+    cidr_blocks = ["0.0.0.0/24"]
+ }
+
 }
