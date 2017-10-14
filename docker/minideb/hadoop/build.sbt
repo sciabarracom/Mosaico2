@@ -5,11 +5,12 @@ imageNames in docker := Seq(ImageName(prp.value("hadoop")))
 val jdk8 = (project in file("..")/"jdk8").enablePlugins(MosaicoDockerPlugin)
 
 dockerfile in docker := {
-  download.toTask(s" @hadoop.url hadoop.tgz").value
+  val hadoop = file(url(prp.value("hadoop.url")).getFile).getName
+  download.toTask(s" @hadoop.url %hadoop.url").value
   val base = baseDirectory.value
   new Dockerfile {
     from((docker in jdk8).value.toString)
-    add(base/"hadoop.tgz", "/usr")
+    add(base/hadoop, "/usr")
     runRaw("ln -sf /usr/hadoop-* /usr/hadoop")
     env("HADOOP_PREFIX", "/usr/hadoop")
     runRaw(s"""
