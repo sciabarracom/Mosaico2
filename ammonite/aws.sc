@@ -1,5 +1,6 @@
 import ammonite.ops._
 import collection.JavaConversions._
+import scala.util.Try
 
 import $file.lib.SSH
 import $file.lib.EC2
@@ -12,11 +13,8 @@ val defaultTag = (Option(sys.props("aws.tag.name")).getOrElse("Application"),
 def doSsh(tag: (String,String), args: Seq[String]) {
    val instances = EC2.runningTaggedInstances(tag)
    val exec = SSH.Ssh(defaultUser, EC2.ipAddresses(instances))
-   try {
-     exec(args: _*)
-   } catch {
-     case err: Throwable => println(err.toString)
-   }
+   Try(exec(args: _*))
+
 }
 
 @main def ssh(args: String*) = {

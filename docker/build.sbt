@@ -10,4 +10,4 @@ lazy val alpine = project in file("alpine")
 
 lazy val minideb = project in file("minideb")
 
-lazy val root = (project in file(".")).aggregate(minideb, alpine)
+lazy val docker  = (project in file(".")).aggregate(minideb, alpine)

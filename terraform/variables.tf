@@ -25,12 +25,12 @@ variable "vpc_fullcidr" {
 }
 
 variable "subnet_cidr" {
-  default = "10.0.1.0/24"
+  default = "10.0.0.0/24"
   description = "the cidr of the subnet"
 }
 
 variable "ip_prefix" {
-  default = "10.0.1"
+  default = "10.0.0"
   description = "ip prefix of node instances"
 }
 
@@ -38,21 +38,3 @@ variable "volume_size" {
   default = "10"
   description = "volume size"
 }
-
-/*
-variable "master_ip" {
-  default = "10.0.1.5"
-}
-
-variable "node1_ip" {
-  default = "10.0.1.6"
-}
-
-variable "node2_ip" {
-  default = "10.0.1.7"
-}
-
-variable "node3_ip" {
-  default = "10.0.1.8"
-}
-*/
