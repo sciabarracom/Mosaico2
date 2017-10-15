@@ -1,0 +1,12 @@
+---
+- name: jenkins service
+  become: yes
+  template: src=jenkins.service dest=/etc/systemd/system/jenkins.service mode=644
+  notify:
+    - reload systemd
+  when: inventory_hostname == master_hostname
+
+- name: enabling jenkins
+  become: yes
+  service: name=jenkins state=started enabled=yes
+  when: inventory_hostname == master_hostname

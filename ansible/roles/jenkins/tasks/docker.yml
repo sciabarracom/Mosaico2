@@ -1,0 +1,25 @@
+---
+- pip: name=docker-py state=present
+
+- file:
+    path: /var/jenkins_home
+    state: directory
+    mode: 0755
+    owner: 1000
+    group: 1000
+
+- name: jenkins present
+  docker_container:
+    name: jenkins
+    state: started
+    image: jenkins/jenkins:lts
+    restart: yes
+    privileged: true
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "/usr/bin/docker-current:/usr/bin/docker"
+      - "/var/jenkins_home:/var/jenkins_home"
+  when: inventory_hostname == master_hostname

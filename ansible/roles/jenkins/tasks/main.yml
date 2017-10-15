@@ -1,27 +1,4 @@
 ---
-- pip: name=docker-py
-- name: jenkins present
-  docker_container:
-    name: jenkins
-    state: started
-    image: jenkins/jenkins:lts
-    restart: yes
-    ports:
-      - "8080:8080"
-      - "50000:50000"
-    volumes:
-      "/var/run/docker.sock:/var/run/docker.sock"
-  when: inventory_hostname == master_hostname
-
-- name: get jenkins password
-  become: yes
-  shell: >
-    docker exec $(docker ps | grep jenkins | awk '{print $1}') \
-    cat /var/jenkins_home/secrets/initialAdminPassword
-  register: jenkins_initial_admin_password
-  when: inventory_hostname == master_hostname
-
-
-- name: Initial Jenkins Admin Password
-  debug: msg="{{jenkins_initial_admin_password.stdout}}"
-  when: inventory_hostname == master_hostname
+- include_tasks: docker.yml
+- include_tasks: service.yml
+- include_tasks: show-jenkins-pw.yml

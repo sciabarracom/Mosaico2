@@ -1,5 +1,5 @@
 ---
-- pip: name=docker-py
+- pip: name=docker-py state=present
 - name: registry present
   docker_container:
     name: registry
