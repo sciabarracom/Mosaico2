@@ -2,24 +2,38 @@
 - pip: name=docker-py state=present
 
 - file:
+    path: /tmp/jenkins_build
+    state: directory
+  when: inventory_hostname == master_hostname
+
+- file:
     path: /var/jenkins_home
     state: directory
     mode: 0755
     owner: 1000
-    group: 1000
+  when: inventory_hostname == master_hostname
 
-- name: jenkins present
+- name: jenkins Dockerfile
+  template: src=Dockerfile dest=/tmp/jenkins_build/Dockerfile
+  when: inventory_hostname == master_hostname
+
+- name: Build jenkins image
+  docker_image:
+     path: /tmp/jenkins_build
+     name: jenkins-docker
+  when: inventory_hostname == master_hostname
+
+- name: Deploy jenkins image
   docker_container:
     name: jenkins
     state: started
-    image: jenkins/jenkins:lts
+    image: jenkins-docker
     restart: yes
     privileged: true
     ports:
       - "8080:8080"
       - "50000:50000"
     volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
-      - "/usr/bin/docker-current:/usr/bin/docker"
       - "/var/jenkins_home:/var/jenkins_home"
+      - "/var/run/docker.sock:/var/run/docker.sock"
   when: inventory_hostname == master_hostname

@@ -1,5 +1,5 @@
 [Unit]
-Description=Local Docker Jenkins
+Description=Local Docker Jenkins cache
 Requires=docker.service
 After=docker.service
 
