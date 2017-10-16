@@ -10,7 +10,7 @@ variable "ami_by_region" {
 }
 
 variable "instance_type" {
-  default = "t2.small"
+  default = "t2.medium"
   description = "EC2 instance type"
 }
 
