@@ -1,4 +1,4 @@
-watchTransitiveSources := Seq()
+val cloud = project in file(".")
 
 enablePlugins(MosaicoAmmonitePlugin,MosaicoConfigPlugin)
 
@@ -12,6 +12,9 @@ addCommandAlias("awssh", "amm aws.sc ssh")
 
 addCommandAlias("cmd", "amm cmd.sc")
 
-addCommandAlias("terraform", "amm cmd.sc terraform --args")
+addCommandAlias("terraform", "amm cmd.sc terraform")
 
 addCommandAlias("ansible", "amm cmd.sc ansible")
+
+addCommandAlias("jenkins", "amm cmd.sc jenkins")
+

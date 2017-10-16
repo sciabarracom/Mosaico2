@@ -35,6 +35,6 @@ variable "ip_prefix" {
 }
 
 variable "volume_size" {
-  default = "10"
+  default = "20"
   description = "volume size"
 }

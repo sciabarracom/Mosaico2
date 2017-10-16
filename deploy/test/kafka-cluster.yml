@@ -1,8 +1,10 @@
 zook:
   hostname: zookeeper
   domainname: loc
-  image: kafka:0.4-2
+  image: msciab/kafka:0.4-2
   expose: ["2181"]
+  extra_hosts:
+    - "kafka.sciabarra.com:10.97.194.215"
   environment:
     IS_ZOOKEEPER: 1
     ZOOKEEPER: zookeeper.loc
@@ -11,12 +13,14 @@ zook:
 kafka1:
   hostname: kafka1
   domainname: loc
-  image: kafka:0.4-2
+  image: msciab/kafka:0.4-2
   links:
     - "zook:zookeeper.loc"
+  extra_hosts:
+    - "kafka.sciabarra.com:10.97.194.215"
   environment:
     ZOOKEEPER: zookeeper.loc
     IS_KAFKA: 1
     LISTENERS: PLAINTEXT://kafka1.loc:9092
-    ADVERTISED_LISTENERS: PLAINTEXT://kafka.sciabarra.com:9092
+    ADVERTISED_LISTENERS: PLAINTEXT://10.97.194.215:9092
   ports: ["9092:9092"]

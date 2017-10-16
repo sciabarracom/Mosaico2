@@ -1,4 +1,3 @@
-
 prpLookup += baseDirectory.value.getParentFile -> "minideb"
 
 imageNames in docker := Seq(ImageName(prp.value("spark")))
@@ -18,11 +17,11 @@ dockerfile in docker := {
       add(base/spark, "/usr")
       runRaw("ln -sf /usr/spark-* /usr/spark")
       add(base/"slf4j-api.jar", "/usr/spark/jars")
-      add(base/"spark-defaults.conf", "/usr/spark/conf")
       add(base/"spark-shell.sh", "/usr/bin/spark-shell")
       runRaw("chmod +x /usr/spark/bin/* /usr/spark/sbin/*")
-      runRaw("echo 'System.exit(0)' | /usr/bin/spark-shell")
       add(base/"log4j.properties", "/usr/spark/conf/log4j.properties")
       add(base/"run.sh", "/services/spark/run")
+      //add(base/"spark-defaults.conf", "/usr/spark/conf")
+      //runRaw("echo 'System.exit(0)' | /usr/bin/spark-shell")
     }
 }

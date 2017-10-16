@@ -1,8 +1,8 @@
 import ammonite.ops._
 
-def ansible(inventory: String, script: String) = {
+def ansible(inventory: String, script: String, args: Seq[String]) = {
   val ansibleDir = pwd/up/'ansible
-  %("ansible-playbook", "-i", inventory, script)(ansibleDir)
+  %("ansible-playbook", "-i", inventory, script, args)(ansibleDir)
 }
 
 def terraform(args: Seq[String]) = {
