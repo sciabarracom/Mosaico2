@@ -14,14 +14,13 @@ def doSsh(tag: (String,String), args: Seq[String]) {
    val instances = EC2.runningTaggedInstances(tag)
    val exec = SSH.Ssh(defaultUser, EC2.ipAddresses(instances))
    Try(exec(args: _*))
-
 }
 
 @main def ssh(args: String*) = {
   if(args.head(0) == '@') {
     args.head.tail.split(",").foreach {
       host =>
-        print(s"[${host}] ")
+        //print(s"[${host}] ")
         val tag = "Name" -> host
         doSsh(tag, args.tail)
     }
@@ -37,7 +36,7 @@ def doSsh(tag: (String,String), args: Seq[String]) {
     val tags = x.getTags.toList.map {
       y =>  s"${y.getKey}=${y.getValue}"
     }.mkString("[", ",", "]")
-    s"${x.getState.getName}\t${x.getPublicIpAddress}\t${x.getPublicDnsName}\t${x.getPrivateIpAddress}\t${x.getPrivateDnsName}\t${tags}"
+    s"${tags}\t${x.getPublicIpAddress}\t${x.getPublicDnsName}\t${x.getState.getName}\t${x.getPrivateIpAddress}\t${x.getPrivateDnsName}"
   }
   println(out.mkString("\n"))
 }

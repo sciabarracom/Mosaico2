@@ -1,0 +1,189 @@
+{
+  "paragraphs": [
+    {
+      "text": "import vegas._\nimport vegas.data.External._\nimplicit val render \u003d vegas.render.ShowHTML(s \u003d\u003e print(\"%html \" + s))\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Sep 24, 2017 10:18:40 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import vegas._\nimport vegas.data.External._\nrender: vegas.render.ShowHTML \u003d \u003cfunction1\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501172536437_1571335027",
+      "id": "20170727-162216_654035795",
+      "dateCreated": "Jul 27, 2017 4:22:16 PM",
+      "dateStarted": "Sep 24, 2017 10:18:40 PM",
+      "dateFinished": "Sep 24, 2017 10:19:13 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "\nVegas(\"Country Pop\").\n  withData(\n    Seq(\n      Map(\"country\" -\u003e \"CH\", \"population\" -\u003e 1379),\n      Map(\"country\" -\u003e \"USA\", \"population\" -\u003e 323),\n      Map(\"country\" -\u003e \"UK\", \"population\" -\u003e 65),\n      Map(\"country\" -\u003e \"IT\", \"population\" -\u003e 60)\n    )\n  ).\n  encodeX(\"country\", Nom).\n  encodeY(\"population\", Quant).\n  mark(Bar).\n  show",
+      "user": "anonymous",
+      "dateUpdated": "Sep 24, 2017 10:19:20 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\n  \u003ciframe id\u003d\"frame-vegas-e3a1a376-b3c8-42bf-8256-20dc965dd0fb\" sandbox\u003d\"allow-scripts allow-same-origin\" style\u003d\"border: none; width: 100%\" srcdoc\u003d\"\u0026lt;html\u0026gt;\n  \u0026lt;head\u0026gt;\n    \u0026lt;script src\u003d\u0026quot;https://cdn.jsdelivr.net/webjars/org.webjars.bower/d3/3.5.17/d3.min.js\u0026quot; charset\u003d\u0026quot;utf-8\u0026quot;\u0026gt;\u0026lt;/script\u0026gt;\n\u0026lt;script src\u003d\u0026quot;https://cdn.jsdelivr.net/webjars/org.webjars.bower/vega/2.6.3/vega.min.js\u0026quot; charset\u003d\u0026quot;utf-8\u0026quot;\u0026gt;\u0026lt;/script\u0026gt;\n\u0026lt;script src\u003d\u0026quot;https://cdn.jsdelivr.net/webjars/org.webjars.bower/vega-lite/1.2.0/vega-lite.min.js\u0026quot; charset\u003d\u0026quot;utf-8\u0026quot;\u0026gt;\u0026lt;/script\u0026gt;\n\u0026lt;script src\u003d\u0026quot;https://vega.github.io/vega-editor/vendor/vega-embed.js\u0026quot; charset\u003d\u0026quot;utf-8\u0026quot;\u0026gt;\u0026lt;/script\u0026gt;\n  \u0026lt;/head\u0026gt;\n  \u0026lt;body\u0026gt;\n \u0026lt;div id\u003d\u0027vegas-e3a1a376-b3c8-42bf-8256-20dc965dd0fb\u0027\u0026gt;\u0026lt;/div\u0026gt;\n \u0026lt;script\u0026gt;\n   var embedSpec \u003d {\n     mode: \u0026quot;vega-lite\u0026quot;,\n     spec: {\n  \u0026quot;mark\u0026quot; : \u0026quot;bar\u0026quot;,\n  \u0026quot;encoding\u0026quot; : {\n    \u0026quot;x\u0026quot; : {\n      \u0026quot;field\u0026quot; : \u0026quot;country\u0026quot;,\n      \u0026quot;type\u0026quot; : \u0026quot;nominal\u0026quot;\n    },\n    \u0026quot;y\u0026quot; : {\n      \u0026quot;field\u0026quot; : \u0026quot;population\u0026quot;,\n      \u0026quot;type\u0026quot; : \u0026quot;quantitative\u0026quot;\n    }\n  },\n  \u0026quot;description\u0026quot; : \u0026quot;Country Pop\u0026quot;,\n  \u0026quot;data\u0026quot; : {\n    \u0026quot;values\u0026quot; : [\n      {\n        \u0026quot;country\u0026quot; : \u0026quot;CH\u0026quot;,\n        \u0026quot;population\u0026quot; : 1379\n      },\n      {\n        \u0026quot;country\u0026quot; : \u0026quot;USA\u0026quot;,\n        \u0026quot;population\u0026quot; : 323\n      },\n      {\n        \u0026quot;country\u0026quot; : \u0026quot;UK\u0026quot;,\n        \u0026quot;population\u0026quot; : 65\n      },\n      {\n        \u0026quot;country\u0026quot; : \u0026quot;IT\u0026quot;,\n        \u0026quot;population\u0026quot; : 60\n      }\n    ]\n  }\n}\n   }\n   vg.embed(\u0026quot;#vegas-e3a1a376-b3c8-42bf-8256-20dc965dd0fb\u0026quot;, embedSpec, function(error, result) {});\n \u0026lt;/script\u0026gt;\n\n    \u0026lt;/body\u0026gt;\n\u0026lt;/html\u0026gt;\"\u003e\u003c/iframe\u003e\n  \u003cscript\u003e\n    (function() {\n      function resizeIFrame(el, k) {\n        var height \u003d el.contentWindow.document.body.scrollHeight || \u0027400\u0027; // Fallback in case of no scroll height\n        el.style.height \u003d height + \u0027px\u0027;\n        if (k \u003c\u003d 10) { setTimeout(function() { resizeIFrame(el, k+1) }, 1000 + (k * 250)) };\n      }\n      resizeIFrame(document.querySelector(\u0027#frame-vegas-e3a1a376-b3c8-42bf-8256-20dc965dd0fb\u0027), 1);\n    })(); // IIFE\n  \u003c/script\u003e\n    "
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501172643254_-1540224562",
+      "id": "20170727-162403_1739949727",
+      "dateCreated": "Jul 27, 2017 4:24:03 PM",
+      "dateStarted": "Sep 24, 2017 10:19:22 PM",
+      "dateFinished": "Sep 24, 2017 10:19:24 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val df \u003d spark.read.format(\"csv\").\n option(\"header\", \"true\").\n csv(\"file:///data/boot/acme.csv\")",
+      "user": "anonymous",
+      "dateUpdated": "Sep 24, 2017 10:19:33 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "org.apache.spark.sql.AnalysisException: Path does not exist: file:/data/boot/acme.csv;\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$14.apply(DataSource.scala:360)\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$14.apply(DataSource.scala:348)\n  at scala.collection.TraversableLike$$anonfun$flatMap$1.apply(TraversableLike.scala:241)\n  at scala.collection.TraversableLike$$anonfun$flatMap$1.apply(TraversableLike.scala:241)\n  at scala.collection.immutable.List.foreach(List.scala:381)\n  at scala.collection.TraversableLike$class.flatMap(TraversableLike.scala:241)\n  at scala.collection.immutable.List.flatMap(List.scala:344)\n  at org.apache.spark.sql.execution.datasources.DataSource.resolveRelation(DataSource.scala:348)\n  at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:178)\n  at org.apache.spark.sql.DataFrameReader.csv(DataFrameReader.scala:533)\n  at org.apache.spark.sql.DataFrameReader.csv(DataFrameReader.scala:412)\n  ... 50 elided\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501221756318_-589104647",
+      "id": "20170728-060236_864911372",
+      "dateCreated": "Jul 28, 2017 6:02:36 AM",
+      "dateStarted": "Sep 24, 2017 10:19:34 PM",
+      "dateFinished": "Sep 24, 2017 10:19:34 PM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\nls /data",
+      "user": "anonymous",
+      "dateUpdated": "Aug 21, 2017 6:48:30 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "COUNT\nDAAG\nEcdat\nHSAUR\nHistData\nISLR\nKMsurv\nMASS\nStat2Data\nZelig\nboot\ncar\ncluster\ncsv\ndatasets\nevir\ngamclass\ngap\ngeepack\nggplot2\nhwde\nindex.html\nlattice\nlme4\nmediation\nmi\nmosaicData\nmultgee\nplm\nplyr\npscl\npsych\nquantreg\nreshape2\nrobustbase\nrpart\nsandwich\nsem\nsurvival\ntexmex\nvcd\nwooldridge\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501222118158_273839519",
+      "id": "20170728-060838_1983241822",
+      "dateCreated": "Jul 28, 2017 6:08:38 AM",
+      "dateStarted": "Aug 21, 2017 6:48:30 PM",
+      "dateFinished": "Aug 21, 2017 6:48:41 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 21, 2017 6:48:30 PM",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1503341310655_1296372172",
+      "id": "20170821-184830_2115443820",
+      "dateCreated": "Aug 21, 2017 6:48:30 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "vegas",
+  "id": "2CRN91A3N",
+  "angularObjects": {
+    "2CUMJ5DGS:shared_process": [],
+    "2CTU6T52Y:shared_process": [],
+    "2CTWF8BDU:shared_process": [],
+    "2CT123WJ1:shared_process": [],
+    "2CUUFG4YH:shared_process": [],
+    "2CUZP5BRV:shared_process": [],
+    "2CUZ9VBPX:shared_process": [],
+    "2CVTH6B97:shared_process": [],
+    "2CVZ6QGFZ:shared_process": [],
+    "2CUAN84S9:shared_process": [],
+    "2CTFC8QCM:shared_process": [],
+    "2CVKXN4PB:shared_process": [],
+    "2CVYSD3MK:shared_process": [],
+    "2CV83VD9K:shared_process": [],
+    "2CU9NX8MK:shared_process": [],
+    "2CV8J23N3:shared_process": [],
+    "2CUN1PW46:shared_process": [],
+    "2CT5UW8MR:shared_process": [],
+    "2CVH942XN:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

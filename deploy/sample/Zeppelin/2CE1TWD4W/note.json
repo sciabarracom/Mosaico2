@@ -1,0 +1,108 @@
+{
+  "paragraphs": [
+    {
+      "text": "val cc \u003d sc.textFile(s\"s3n://${System.getenv(\"S3_CRED\")}@sciabarra-data/creditcard.csv\")\ncc.take(1)",
+      "user": "anonymous",
+      "dateUpdated": "Sep 24, 2017 10:22:33 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "cc: org.apache.spark.rdd.RDD[String] \u003d s3n://AKIAJL7TKOXONH7CW5MA:0tgh6n0clvUIb6F9bKdRdfu6ebsoYF9GoBooJqMl@sciabarra-data/creditcard.csv MapPartitionsRDD[1] at textFile at \u003cconsole\u003e:27\nres0: Array[String] \u003d Array(\"Time\",\"V1\",\"V2\",\"V3\",\"V4\",\"V5\",\"V6\",\"V7\",\"V8\",\"V9\",\"V10\",\"V11\",\"V12\",\"V13\",\"V14\",\"V15\",\"V16\",\"V17\",\"V18\",\"V19\",\"V20\",\"V21\",\"V22\",\"V23\",\"V24\",\"V25\",\"V26\",\"V27\",\"V28\",\"Amount\",\"Class\")\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1491396738957_-2090069924",
+      "id": "20170405-125218_2090008284",
+      "dateCreated": "Apr 5, 2017 12:52:18 PM",
+      "dateStarted": "Sep 24, 2017 10:22:33 PM",
+      "dateFinished": "Sep 24, 2017 10:24:56 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "cc.count()",
+      "user": "anonymous",
+      "dateUpdated": "Sep 24, 2017 10:25:25 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": "org.apache.zeppelin.interpreter.InterpreterException: org.apache.thrift.transport.TTransportException: java.net.ConnectException: Connection refused (Connection refused)",
+      "apps": [],
+      "jobName": "paragraph_1491396875808_1295182406",
+      "id": "20170405-125435_1066639897",
+      "dateCreated": "Apr 5, 2017 12:54:35 PM",
+      "dateStarted": "Sep 24, 2017 10:25:25 PM",
+      "dateFinished": "Sep 24, 2017 10:25:25 PM",
+      "status": "ERROR",
+      "errorMessage": "java.net.ConnectException: Connection refused (Connection refused)\n\tat java.net.PlainSocketImpl.socketConnect(Native Method)\n\tat java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)\n\tat java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)\n\tat java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)\n\tat java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)\n\tat java.net.Socket.connect(Socket.java:589)\n\tat org.apache.thrift.transport.TSocket.open(TSocket.java:182)\n\tat org.apache.zeppelin.interpreter.remote.ClientFactory.create(ClientFactory.java:51)\n\tat org.apache.zeppelin.interpreter.remote.ClientFactory.create(ClientFactory.java:37)\n\tat org.apache.commons.pool2.BasePooledObjectFactory.makeObject(BasePooledObjectFactory.java:60)\n\tat org.apache.commons.pool2.impl.GenericObjectPool.create(GenericObjectPool.java:861)\n\tat org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:435)\n\tat org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:363)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreterProcess.getClient(RemoteInterpreterProcess.java:92)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreter.interpret(RemoteInterpreter.java:352)\n\tat org.apache.zeppelin.interpreter.LazyOpenInterpreter.interpret(LazyOpenInterpreter.java:97)\n\tat org.apache.zeppelin.notebook.Paragraph.jobRun(Paragraph.java:406)\n\tat org.apache.zeppelin.scheduler.Job.run(Job.java:175)\n\tat org.apache.zeppelin.scheduler.RemoteScheduler$JobRunner.run(RemoteScheduler.java:329)\n\tat java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)\n\tat java.util.concurrent.FutureTask.run(FutureTask.java:266)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\n\tat java.lang.Thread.run(Thread.java:748)\n",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "anonymous",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1491429391359_-1740667530",
+      "id": "20170405-215631_508411126",
+      "dateCreated": "Apr 5, 2017 9:56:31 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "creditcard",
+  "id": "2CE1TWD4W",
+  "angularObjects": {
+    "2CUMJ5DGS:shared_process": [],
+    "2CTU6T52Y:shared_process": [],
+    "2CTWF8BDU:shared_process": [],
+    "2CT123WJ1:shared_process": [],
+    "2CUUFG4YH:shared_process": [],
+    "2CUZP5BRV:shared_process": [],
+    "2CUZ9VBPX:shared_process": [],
+    "2CVTH6B97:shared_process": [],
+    "2CVZ6QGFZ:shared_process": [],
+    "2CUAN84S9:shared_process": [],
+    "2CTFC8QCM:shared_process": [],
+    "2CVKXN4PB:shared_process": [],
+    "2CVYSD3MK:shared_process": [],
+    "2CV83VD9K:shared_process": [],
+    "2CU9NX8MK:shared_process": [],
+    "2CV8J23N3:shared_process": [],
+    "2CUN1PW46:shared_process": [],
+    "2CT5UW8MR:shared_process": [],
+    "2CVH942XN:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

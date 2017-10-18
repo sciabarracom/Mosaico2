@@ -1,0 +1,125 @@
+{
+  "paragraphs": [
+    {
+      "text": "2+2",
+      "user": "anonymous",
+      "dateUpdated": "Sep 24, 2017 10:20:09 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res2: Int \u003d 4\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501178387896_1056748133",
+      "id": "20170727-175947_185311297",
+      "dateCreated": "Jul 27, 2017 5:59:47 PM",
+      "dateStarted": "Sep 24, 2017 10:20:09 PM",
+      "dateFinished": "Sep 24, 2017 10:20:09 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "\nval pres \u003d sc.textFile(s\"s3n://${System.getenv(\"S3_CRED\")}@sciabarra-data/presidents.csv\")\npres.count()",
+      "user": "anonymous",
+      "dateUpdated": "Sep 24, 2017 10:20:13 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "pres: org.apache.spark.rdd.RDD[String] \u003d s3n://AKIAJL7TKOXONH7CW5MA:0tgh6n0clvUIb6F9bKdRdfu6ebsoYF9GoBooJqMl@sciabarra-data/presidents.csv MapPartitionsRDD[1] at textFile at \u003cconsole\u003e:36\nres4: Long \u003d 121\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501153515469_-79699730",
+      "id": "20170727-110515_626649036",
+      "dateCreated": "Jul 27, 2017 11:05:15 AM",
+      "dateStarted": "Sep 24, 2017 10:20:13 PM",
+      "dateFinished": "Sep 24, 2017 10:20:23 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "anonymous",
+      "dateUpdated": "Aug 18, 2017 9:51:35 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1502836071065_-1192988482",
+      "id": "20170815-222751_1941131986",
+      "dateCreated": "Aug 15, 2017 10:27:51 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "playground",
+  "id": "2CNBRYTV4",
+  "angularObjects": {
+    "2CUMJ5DGS:shared_process": [],
+    "2CTU6T52Y:shared_process": [],
+    "2CTWF8BDU:shared_process": [],
+    "2CT123WJ1:shared_process": [],
+    "2CUUFG4YH:shared_process": [],
+    "2CUZP5BRV:shared_process": [],
+    "2CUZ9VBPX:shared_process": [],
+    "2CVTH6B97:shared_process": [],
+    "2CVZ6QGFZ:shared_process": [],
+    "2CUAN84S9:shared_process": [],
+    "2CTFC8QCM:shared_process": [],
+    "2CVKXN4PB:shared_process": [],
+    "2CVYSD3MK:shared_process": [],
+    "2CV83VD9K:shared_process": [],
+    "2CU9NX8MK:shared_process": [],
+    "2CV8J23N3:shared_process": [],
+    "2CUN1PW46:shared_process": [],
+    "2CT5UW8MR:shared_process": [],
+    "2CVH942XN:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

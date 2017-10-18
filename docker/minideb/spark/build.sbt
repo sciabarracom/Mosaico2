@@ -14,6 +14,7 @@ dockerfile in docker := {
     val base = baseDirectory.value
     new Dockerfile {
       from((docker in hadoop).value.toString)
+      runRaw("rm /services/hadoop/* ; rmdir /services/hadoop")
       add(base/spark, "/usr")
       runRaw("ln -sf /usr/spark-* /usr/spark")
       add(base/"slf4j-api.jar", "/usr/spark/jars")

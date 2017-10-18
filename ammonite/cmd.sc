@@ -23,3 +23,8 @@ import $exec.aws
   println("Jenkins Initial Password")
   ssh(command.split(" "): _*)
 }
+
+@main def services() {
+  Cmd.services("centos", "docker-compose.yml")
+  ssh("@master")
+}
