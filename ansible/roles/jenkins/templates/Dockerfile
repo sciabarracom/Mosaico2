@@ -14,4 +14,5 @@ RUN apt-get -y update && \
       $(lsb_release -cs) \
       stable"
 RUN apt-get  -y update && apt-get -y install docker-ce && adduser jenkins root && adduser jenkins docker
+RUN groupadd  -g 993 dockerce && adduser jenkins dockerce
 USER jenkins

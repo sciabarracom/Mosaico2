@@ -4,15 +4,21 @@
     name: "firewalld"
     state: absent
 
+- name: add docker repo
+  shell: |
+     yum-config-manager --add-repo \
+        https://download.docker.com/linux/centos/docker-ce.repo \
+     && yum update -y && touch /etc/yum-update.done
+
 - name: install docker
   yum:
-    name: docker
+    name: docker-ce
     state: present
 
 - name: adding user centos to docker group
   user:
     name: centos
-    groups: dockerroot
+    groups: docker
     append: yes
 
 - name: enabling docker

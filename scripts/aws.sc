@@ -16,7 +16,7 @@ def doSsh(tag: (String,String), args: Seq[String]) {
    Try(exec(args: _*))
 }
 
-@main def ssh(args: String*) = {
+@main def awssh(args: String*) = {
   if(args.head(0) == '@') {
     args.head.tail.split(",").foreach {
       host =>
@@ -36,7 +36,7 @@ def doSsh(tag: (String,String), args: Seq[String]) {
     val tags = x.getTags.toList.map {
       y =>  s"${y.getKey}=${y.getValue}"
     }.mkString("[", ",", "]")
-    s"${tags}\t${x.getPublicIpAddress}\t${x.getPublicDnsName}\t${x.getState.getName}\t${x.getPrivateIpAddress}\t${x.getPrivateDnsName}"
+    s"${tags}\t${x.getState.getName}\t${x.getPublicIpAddress}\t${x.getPublicDnsName}\t${x.getPrivateIpAddress}\t${x.getPrivateDnsName}"
   }
   println(out.mkString("\n"))
 }

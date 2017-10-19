@@ -3,6 +3,8 @@ import scala.util.Try
 import $file.lib.Cmd
 import $exec.aws
 
+val defaultUser = Option(sys.props("aws.ssh.user")).getOrElse("centos")
+
 @main def ansible(args: String*) {
   val inventory = sys.props("ansible.inventory")
   val script = sys.props("ansible.script")
@@ -21,10 +23,11 @@ import $exec.aws
       "sudo docker ps -f name=jenkins | awk '/jenkins/ { print $1 }'" +
       "` cat /var/jenkins_home/secrets/initialAdminPassword"
   println("Jenkins Initial Password")
-  ssh(command.split(" "): _*)
+  awssh(command.split(" "): _*)
 }
 
-@main def services() {
-  Cmd.services("centos", "docker-compose.yml")
-  ssh("@master")
+@main def docker(args: String*) {
+  Cmd.copyCompose(defaultUser, "docker-compose.yml")
+  val args1 = "@master sudo docker".split(" ").toSeq++args
+  awssh(args1: _*)
 }

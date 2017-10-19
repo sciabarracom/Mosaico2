@@ -39,7 +39,7 @@ trait HoconSettings extends FileUtils with MiscUtils {
         confName = s"${confPrefix}.${confExt}"
         confFile = confDir / confName
       } {
-        println(s"looking for ${confFile}")
+        //println(s"looking for ${confFile}")
         if (confFile.exists) {
           println(s"loading ${confFile.getName}")
           conf = ConfigFactory.parseFile(confFile).withFallback(conf)
