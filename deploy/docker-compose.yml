@@ -1,11 +1,13 @@
 version: '3'
 services:
   spark-master:
+    hostname: spark-master
     image: localhost:5000/spark:0.4-1
+    expose: 7077
     ports:
       - "8082:8080"
     networks:
-      - spark-network
+      - loc
     environment:
       SPARK_MASTER_MEMORY: "4g"
       SPARK_MASTER_CORES: 2
@@ -18,12 +20,10 @@ services:
 
   spark-worker:
     image: localhost:5000/spark:0.4-1
-    links:
-      - "spark-master:spark-master.loc"
     ports:
       - "8083:8081"
     networks:
-      - spark-network
+      - loc
     environment:
       MASTER: "spark-master.loc"
       SPARK_WORKER_MEMORY: "4g"
@@ -37,17 +37,16 @@ services:
           memory: "2g"
 
   zeppelin:
+    hostname: zeppelin
     image: localhost:5000/zeppelin:0.4-1
     ports:
       - "8081:8080"
       - "4040:4040"
       - "8022:22"
     networks:
-      - spark-network
-    links:
-      - "spark-master:spark-master.loc"
+      - loc
     environment:
-      MASTER: "spark-master.loc"
+      MASTER: "sppark-master.loc"
     deploy:
       resources:
         limits:
@@ -55,4 +54,4 @@ services:
         reservations:
           memory: "2g"
 networks:
-   spark-network:
+   loc:
