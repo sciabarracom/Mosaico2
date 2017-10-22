@@ -24,3 +24,8 @@
 - name: enabling docker
   become: yes
   service: name=docker.service state=started enabled=yes
+
+- name: dns for docker
+  become: yes
+  template: src=daemon.json dest=/etc/docker/daemon.json mode=644
+  notify: restart docker

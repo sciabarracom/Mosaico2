@@ -14,4 +14,3 @@
     key: "{{ hostvars[item].ssh_public_key }}"
   with_inventory_hostnames:
     - all
-  when: inventory_hostname == master_hostname
