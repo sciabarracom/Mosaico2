@@ -1,4 +1,4 @@
-version := "0.4-SNAPSHOT"
+version := "0.4"
 
 sbtPlugin := true
 
@@ -42,25 +42,24 @@ publishArtifact in Test := false
 
 //publishArtifact in (Compile, packageDoc) := false
 
-pomExtra := (
-  <url>https://github.com/sciabarra/Mosaico</url>
-  <licenses>
-    <license>
-      <name>Apache 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
-  <scm>
-    <url>git@github.com:sciabarra/Mosaico.git</url>
-    <connection>scm:git:git@github.com:sciabarra/Mosaico.git</connection>
-  </scm>
-  <developers>
-    <developer>
-      <id>sciabarra</id>
-      <name>Michele Sciabarra</name>
-      <url>http://michele.sciabarra.com</url>
-    </developer>
-  </developers>)
+licenses := Seq("Apache-style" -> url("http://www.apache.org/licenses/LICENSE-2.0"))
+
+homepage := Some(url("http://sciabarra.com"))
+
+scmInfo := Some(
+  ScmInfo(
+    url("https://github.com/sciabarracom/Mosaico2"),
+    "scm:git@github.com:sciabarracom/Mosaico2.git"
+  )
+)
+
+developers := List(
+  Developer(
+    id    = "sciabarra",
+    name  = "Michele Sciabarra",
+    email = "michele@sciabarra.com",
+    url   = url("http://michele.sciabarra.com")
+  )
+)
 
 sonatypeProfileName := "com.sciabarra"

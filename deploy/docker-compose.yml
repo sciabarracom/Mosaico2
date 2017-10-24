@@ -8,8 +8,8 @@ services:
     networks:
       - loc
     environment:
-      SPARK_MASTER_MEMORY: "4g"
-      SPARK_MASTER_CORES: 2
+      SPARK_MASTER_MEMORY: "1g"
+      SPARK_MASTER_CORES: 1
     deploy:
       resources:
         limits:
@@ -25,15 +25,15 @@ services:
       - loc
     environment:
       MASTER: "spark-master"
-      SPARK_WORKER_MEMORY: "4g"
-      SPARK_WORKER_CORES: 2
+      SPARK_WORKER_MEMORY: "1g"
+      SPARK_WORKER_CORES: 1
     deploy:
-      replicas: 1
+      replicas: 3
       resources:
         limits:
-          memory: "2g"
+          memory: "1g"
         reservations:
-          memory: "2g"
+          memory: "1g"
 
   zeppelin:
     hostname: zeppelin

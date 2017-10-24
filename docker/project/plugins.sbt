@@ -1,4 +1,4 @@
-val sbtMosaicoVer = "0.4-SNAPSHOT"
+val sbtMosaicoVer = "0.4"
 
 addSbtPlugin("com.sciabarra" % "mosaico-sbt" % sbtMosaicoVer)
 
