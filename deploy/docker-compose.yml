@@ -2,7 +2,7 @@ version: '3'
 services:
   spark-master:
     hostname: spark-master
-    image: localhost:5000/spark:0.4-1
+    image: msciab/spark:0.4-1
     ports:
       - "8082:8080"
     networks:
@@ -18,7 +18,7 @@ services:
           memory: "1g"
 
   spark-worker:
-    image: localhost:5000/spark:0.4-1
+    image: msciab/spark:0.4-1
     ports:
       - "8083:8081"
     networks:
@@ -37,7 +37,7 @@ services:
 
   zeppelin:
     hostname: zeppelin
-    image: localhost:5000/zeppelin:0.4-1
+    image: msciab/zeppelin:0.4-1
     ports:
       - "8081:8080"
       - "4040:4040"

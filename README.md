@@ -1,8 +1,10 @@
 # Mosaico
 
-by [Michele Sciabarra](http://michele.sciabarra.com) and   [Sciabarra.com](http://sciabarra.com)
+by [Michele Sciabarra](http://michele.sciabarra.com) and [Sciabarra.com](http://sciabarra.com)
 
-A starter kit for building a Cloud in AWS
+Thanks to Pierluigi Di Lorenzo and Alessio Marinelli for contributions.
+
+A starter kit for building a docker deployment in AWS
 
 - Terraform for creating the cloud
 - Ansible for privisioning Docker and Jenkins
@@ -36,4 +38,5 @@ cd scripts
 sbt
 ```
 
-The [readme](ammonite/README.md) provides informations about the avalable scripts
+The [readme](ammonite/README.md) provides informations about the avalable scripts.
+Docker images also have an individual README describing how to use them.

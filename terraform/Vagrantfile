@@ -1,0 +1,20 @@
+VAGRANTFILE_API_VERSION = "2"
+
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.provider :virtualbox do |v|
+    v.customize ["modifyvm", :id, "--memory", 2048]
+  end
+  config.vm.define "master" do |v|
+    v.vm.hostname = "master"
+    v.vm.box = "centos/7"
+  end
+  config.vm.define "node0" do |v|
+    v.vm.hostname = "node_0"
+    v.vm.box = "centos/7"
+  end
+  config.vm.define "node1" do |v|
+    v.vm.hostname = "node_1"
+    v.vm.box = "centos/7"
+  end
+end

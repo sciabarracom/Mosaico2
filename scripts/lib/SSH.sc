@@ -1,8 +1,8 @@
 import ammonite.ops._
 
-class Ssh(user: String, ips: Seq[(String,String)])
+class Ssh(user: String, capture: Boolean, ips: Seq[(String,String)])
 {
-  def apply(cmd: Any*): Unit = {
+  def apply(cmd: Any*): Seq[String] = {
 
     val args = cmd map { obj =>
        obj match {
@@ -13,7 +13,7 @@ class Ssh(user: String, ips: Seq[(String,String)])
 
     implicit val wd = pwd
 
-    ips map { ip =>
+    ips flatMap { ip =>
         val tgt = s"${user}@${ip._2}"
 
         val sshArgs: Seq[String] = Seq(
@@ -21,12 +21,21 @@ class Ssh(user: String, ips: Seq[(String,String)])
           tgt
         ) ++ args
 
-        println(s"[${ip._1}] ${args.mkString(" ")}")
-        %ssh(sshArgs)
+        if(capture) {
+          Some( (%%ssh(sshArgs)).out.string )
+        } else {
+          println(s"[${ip._1}] ${args.mkString(" ")}")
+          try {
+             %ssh(sshArgs)
+          } catch {
+           case ex: ShelloutException => println(ex.getMessage)
+          }
+          None
+        }
     }
   }
 }
 
 object Ssh {
-  def apply(user: String, ips: Seq[(String,String)]) = new Ssh(user, ips)
+  def apply(user: String, capture: Boolean, ips: Seq[(String,String)]) = new Ssh(user, capture, ips)
 }

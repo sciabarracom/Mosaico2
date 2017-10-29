@@ -10,11 +10,3 @@ def terraform(args: Seq[String]) = {
   val terraformDir = pwd/up/'terraform
   %("terraform", if(args.size==0) Seq("apply") else args)(terraformDir)
 }
-
-def copyCompose(user: String, file: String) = {
- val deployDir = pwd/up/'deploy
- val master = EC2.ipAddresses(EC2.runningTaggedInstances("Name" -> "master")).head._2
- val src = (deployDir/file).toIO.getAbsolutePath
- val cmd = Seq("scp", src, s"${user}@${master}:${file}")
- %(cmd)(deployDir)
-}

@@ -8,7 +8,6 @@ import com.amazonaws.services.ec2.model._
 import com.amazonaws.regions.{Region=>Ec2Region,Regions=>Ec2Regions}
 
 // instances
-
 val region = Option(sys.props("mosaico.region")).getOrElse("us-east-1")
 
 // client

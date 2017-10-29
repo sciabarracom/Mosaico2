@@ -1,6 +1,7 @@
 import ammonite.ops._
 import scala.util.Try
 import $file.lib.Cmd
+import $file.lib.EC2
 import $exec.aws
 
 val defaultUser = Option(sys.props("aws.ssh.user")).getOrElse("centos")
@@ -19,15 +20,16 @@ val defaultUser = Option(sys.props("aws.ssh.user")).getOrElse("centos")
 }
 
 @main def jenkins(args: String*) {
-  val command = "@master sudo docker exec `"+
+  val command = "sudo docker exec `"+
       "sudo docker ps -f name=jenkins | awk '/jenkins/ { print $1 }'" +
       "` cat /var/jenkins_home/secrets/initialAdminPassword"
-  println("Jenkins Initial Password")
-  awssh(command.split(" "): _*)
+
+  //println(s"Jenkins Server: http://${EC2.runningTaggedInstances("Name" -> "master").head.getPublicDnsName}:8080")
+  val pass = awssh2("master", command)
+  println(s"Jenkins Initial Password: ${pass}")
 }
 
 @main def docker(args: String*) {
-  Cmd.copyCompose(defaultUser, "docker-compose.yml")
   val args1 = "@master sudo docker".split(" ").toSeq++args
   awssh(args1: _*)
 }

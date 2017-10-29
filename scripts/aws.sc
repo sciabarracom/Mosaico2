@@ -10,23 +10,23 @@ val defaultUser = Option(sys.props("aws.ssh.user")).getOrElse("centos")
 val defaultTag = (Option(sys.props("aws.tag.name")).getOrElse("Application"),
            Option(sys.props("aws.tag.value")).getOrElse("Mosaico"))
 
-def doSsh(tag: (String,String), args: Seq[String]) {
+def doSsh(tag: (String,String), capture: Boolean, args: Seq[String]): Seq[String] = {
    val instances = EC2.runningTaggedInstances(tag)
-   val exec = SSH.Ssh(defaultUser, EC2.ipAddresses(instances))
-   Try(exec(args: _*))
+   val exec = SSH.Ssh(defaultUser, capture, EC2.ipAddresses(instances))
+   exec(args: _*)
 }
 
-@main def awssh(args: String*) = {
+@main def awssh(args: String*): Unit = {
   if(args.head(0) == '@') {
     args.head.tail.split(",").foreach {
       host =>
         //print(s"[${host}] ")
         val tag = "Name" -> host
-        doSsh(tag, args.tail)
+        doSsh(tag, false, args.tail)
     }
   } else {
     //println(args)
-    doSsh(defaultTag, args)
+    doSsh(defaultTag, false, args)
   }
 }
 
@@ -49,4 +49,19 @@ def doSsh(tag: (String,String), args: Seq[String]) {
 @main def start() {
   val instances = EC2.withTag(EC2.instances(), defaultTag)
   EC2.startInstances(instances)
+}
+
+// util
+
+/**
+Execute ssh take 1 single string parameter
+*/
+def awssh1(arg: String) = awssh(arg.split(" "): _*)
+
+/**
+Execute ssh on an host by name and capture output
+takes 2 parameters
+*/
+def awssh2(name:String,  arg: String) = {
+  doSsh("Name" -> name, true, arg.split(" ")).head
 }

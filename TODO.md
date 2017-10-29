@@ -1,0 +1,1 @@
+- kubernetes with centos
